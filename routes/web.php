@@ -15,9 +15,9 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class,'index'])->name('paginaPrincipal');
 Route::get('noticias/{idcategoria}', [HomeController::class,'index'])->name('noticias');
-Route::get('login', [HomeController::class,'login'])->name('login');
-Route::get('login/{idusuario}', [HomeController::class,'login'])->name('login');
+Route::get('login/create', [HomeController::class,'create'])->name('create'); 
+Route::get('login/{idusuario?}', [HomeController::class,'login'])->name('login');
 Route::get('login/delete/{idnoticia}', [HomeController::class,'delete'])->name('delete');
 Route::get('login/update/{idnoticia}', [HomeController::class,'update'])->name('update');
-Route::get('login/create', [HomeController::class,'create'])->name('create');
+
 // Route::get('login/create/{idnoticia}', [HomeController::class,'create'])->name('create');
