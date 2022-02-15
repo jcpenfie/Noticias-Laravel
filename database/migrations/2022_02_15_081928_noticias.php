@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('password');
             $table->string('rol');
+            $table->timestamps();
         });
 
         Schema::create('noticias', function (Blueprint $table) {

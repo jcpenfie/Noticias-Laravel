@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Curso;
+use App\Models\usuario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,9 +18,9 @@ class UsuarioFactory extends Factory
     public function definition()
     {
         return [
-            'usuario' => $this->faker->name(),
+            'nombre' => $this->faker->name(),
             'password' => $this->faker->password(),
-            'rol' => $this->faker->randomElement('admin','periodista')
+            'rol' => $this->faker->randomElement(['administrador','periodista']),
         ];
     }
 }

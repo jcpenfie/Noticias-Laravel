@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\noticia;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,7 @@ class NoticiaFactory extends Factory
         return [
             'titulo' => $this->faker->sentence(3),
             'descripcion' => $this->faker->paragraph(),
-            'img' => $this->faker->image(640, 480, 'animals', true),
+            'imagen' => $this->faker->image(640, 480, 'animals', true),
         ];
     }
 }
