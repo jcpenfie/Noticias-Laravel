@@ -20,3 +20,4 @@ class DatabaseSeeder extends Seeder
         noticia::factory(10)->create();
     }
 }
+// php artisan migrate --seed
