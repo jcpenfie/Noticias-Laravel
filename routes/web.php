@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Auth\Events\Login;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,7 +38,8 @@ Route::get('noticias/{idcategoria}', [HomeController::class,'categoria'])->name(
 
 //Panel de control: Lista de todas las noticias de ese usuario y puede filtrar por categoria
 //(si es admin aparecen todas las noticias y un nuevo filtro por autor)
-Route::get('login/{idusuario?}', [HomeController::class,'login'])->name('login.idusuario');
+Route::get('login', [LoginController::class,'index'])->name('login');
+Route::get('login/{idusuario?}', [LoginController::class,'panel'])->name('login.idusuario');
 
 
 //>>>>>>>>>>>>>>>>>>--------------------Operaciones de las noticias-----------------------------
@@ -44,24 +48,24 @@ Route::get('login/{idusuario?}', [HomeController::class,'login'])->name('login.i
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------------------Botones: borrar y editar y ver-----------------------------
 
 //En el panel de control hay un botón borrar que llama a este método con la id que hay que borrar
-Route::delete('login/destroy/{idnoticia}', [HomeController::class,'destroy'])->name('login.destroy');
+Route::delete('login/destroy/{idnoticia}', [LoginController::class,'destroy'])->name('login.destroy');
 
 //Te manda a un formulario con los datos ya introducidos en él para modificar exactamente lo que quieres
-Route::put('login/update/{idnoticia}', [HomeController::class,'update'])->name('login.update');
+Route::put('login/update/{idnoticia}', [LoginController::class,'update'])->name('login.update');
 
 //Lista cierta noticia de cierto autor(usuario)
-Route::put('login/{idusuario}/{idnoticia}', [HomeController::class,'showNot'])->name('login.show.noticia');
+Route::put('login/{idusuario}/{idnoticia}', [LoginController::class,'showNot'])->name('login.show.noticia');
 
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------------------Boton: Nueva Noticia-----------------------------
 
 //Formulario para crear una noticia
-Route::get('login/create', [HomeController::class,'create'])->name('login.create');
+Route::get('login/create', [LoginController::class,'create'])->name('login.create');
 
 //Recoge los datos del formulario del create y crea la noticia
-Route::post('login/store/{$noticia}', [HomeController::class,'store'])->name('login.store');
+Route::post('login/store/{$noticia}', [LoginController::class,'store'])->name('login.store');
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------------------Filtros: Categoria y Autor-----------------------------
 
 //Lista las noticias de cierto usuario de cierta categoría
-Route::post('login/{$idusuario}/{$idcategoria}', [HomeController::class,'showCat'])->name('login.show.categoria');
+Route::post('login/{$idusuario}/{$idcategoria}', [LoginController::class,'showCat'])->name('login.show.categoria');
