@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        $noticias = noticia::all();
+        $noticias = noticia::paginate(10);
+        
         return view('index', compact('noticias'));
     }
     public function login($idusuario = null){

@@ -27,7 +27,7 @@ Route::get('noticias/{idcategoria}', [HomeController::class,'categoria'])->name(
 //--------------------Login al panel de control-----------------------------
 
 //Login que pide usuario y contraseña
-Route::get('login', [HomeController::class,'login'])->name('login');
+// Route::get('login', [HomeController::class,'login'])->name('login');
 
 
 //--------------------Panel de control (usuarios)-----------------------------
@@ -35,7 +35,7 @@ Route::get('login', [HomeController::class,'login'])->name('login');
 
 //Panel de control: Lista de todas las noticias de ese usuario y puede filtrar por categoria
 //(si es admin aparecen todas las noticias y un nuevo filtro por autor)
-Route::get('login/{idusuario?}', [HomeController::class,'usuario'])->name('login.idusuario');
+Route::get('login/{idusuario?}', [HomeController::class,'login'])->name('login.idusuario');
 
 
 //>>>>>>>>>>>>>>>>>>--------------------Operaciones de las noticias-----------------------------
