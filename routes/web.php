@@ -15,9 +15,10 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class,'index'])->name('paginaPrincipal');
 Route::get('noticias/{idcategoria}', [HomeController::class,'index'])->name('noticias');
-Route::get('login/create', [HomeController::class,'create'])->name('create'); 
+Route::get('login/create', [HomeController::class,'create'])->name('login.create'); 
+Route::post('login/store/{$noticia}', [HomeController::class,'store'])->name('login.store');
 Route::get('login/{idusuario?}', [HomeController::class,'login'])->name('login');
-Route::get('login/delete/{idnoticia}', [HomeController::class,'delete'])->name('delete');
-Route::get('login/update/{idnoticia}', [HomeController::class,'update'])->name('update');
+Route::delete('login/destroy/{idnoticia}', [HomeController::class,'destroy'])->name('login.destroy');
+Route::put('login/update/{idnoticia}', [HomeController::class,'update'])->name('login.update');
 
 // Route::get('login/create/{idnoticia}', [HomeController::class,'create'])->name('create');
