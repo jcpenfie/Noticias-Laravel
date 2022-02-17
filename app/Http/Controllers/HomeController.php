@@ -15,8 +15,8 @@ class HomeController extends Controller
     }
 
     public function show($id){
-        // $noticia = Noticia::find($id);
-        return view('show', compact('idnoticia'));
+        $noticia = Noticia::find($id);
+        return view('show', compact('noticia'));
     }
     
     public function noticias($idnoticia)
