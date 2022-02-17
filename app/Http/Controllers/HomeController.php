@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $noticias = Noticia::paginate(10);
+        $noticias = Noticia::paginate(9);
 
         return view('index', compact('noticias'));
     }
