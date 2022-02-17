@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Noticia;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -10,18 +11,21 @@ class HomeController extends Controller
     public function index()
     {
         $noticias = Noticia::paginate(9);
-
-        return view('index', compact('noticias'));
+        $categorias = Categoria::all();
+        return view('index', compact('noticias', 'categorias'));
     }
 
     public function show($id){
         $noticia = Noticia::find($id);
-        return view('show', compact('noticia'));
+        $categorias = Categoria::all();
+        return view('show', compact('noticia', 'categorias'));
     }
     
-    public function noticias($idnoticia)
+    public function categoria($idcategoria)
     {
-        return view('index', compact('idnoticia'));
+        $noticias = Noticia::where('categoria_id','=', $idcategoria)->paginate(9);
+        $categorias = Categoria::all();
+        return view('index', compact('noticias', 'categorias'));
     }
 
 

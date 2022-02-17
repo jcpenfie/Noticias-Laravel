@@ -4,20 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Models\Noticia;
 use App\Models\Usuario;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
     public function index()
     {
+        session_start();
+        if (isset($_SESSION['usuario']) and isset($_SESSION['id'])) {
+            session_destroy();
+        }
         return view('login.login');
     }
 
     public function panel(Request $datos)
     {
-        $usuario = Usuario::where('nombre', '=', $datos->usuario)->first();
-        $noticias = Noticia::where('autor_id', '=', $usuario->id)->orderby('updated_at')->Paginate(5); //paginado de 5 en 5
-        return view('login.panel', compact('usuario'), compact('noticias'));
+        session_start();
+
+        if (isset($_SESSION['usuario']) and isset($_SESSION['id'])) {
+            $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
+            $noticias = Noticia::where('autor_id', '=', $_SESSION['id'])->orderby('updated_at')->Paginate(5); //paginado de 5 en 5
+            $categorias = Categoria::all();
+        } else {
+            $usuario = Usuario::where('nombre', '=', $datos->usuario)->first();
+            $noticias = Noticia::where('autor_id', '=', $usuario->id)->orderby('updated_at')->Paginate(5); //paginado de 5 en 5
+            $categorias = Categoria::all();
+            
+            $_SESSION['usuario'] = $datos->usuario;
+            $_SESSION['id'] = $usuario->id;
+        }
+        return view('login.panel', compact('usuario' ,'categorias', 'noticias'));
     }
 
     public function create()

@@ -23,9 +23,6 @@ use Illuminate\Auth\Events\Login;
 // Pagina con todas la noticas sin importar la categoría
 Route::get('/', [HomeController::class,'index'])->name('paginaPrincipal');
 
-// Pagina con la noticia
-Route::get('{idnoticia}',[HomeController::class,'show'])->name('noticias.show');
-
 //Muestra todas la noticias de cierta categoria
 Route::get('noticias/{idcategoria}', [HomeController::class,'categoria'])->name('noticias.categoria');
 
@@ -41,7 +38,8 @@ Route::get('login', [LoginController::class,'index'])->name('login');
 
 //Panel de control: Lista de todas las noticias de ese usuario y puede filtrar por categoria
 //(si es admin aparecen todas las noticias y un nuevo filtro por autor)
-Route::post('login/{idusuario?}', [LoginController::class,'panel'])->name('login.usuario');
+Route::post('panel', [LoginController::class,'panel'])->name('login.usuario');
+Route::get('panel', [LoginController::class,'panel'])->name('login.usuario'); 
 
 
 //>>>>>>>>>>>>>>>>>>--------------------Operaciones de las noticias-----------------------------
@@ -71,3 +69,8 @@ Route::post('login/store/{$noticia}', [LoginController::class,'store'])->name('l
 
 //Lista las noticias de cierto usuario de cierta categoría
 Route::post('login/{$idusuario}/{$idcategoria}', [LoginController::class,'showCat'])->name('login.show.categoria');
+
+
+
+// Pagina con la noticia ESTE CASTIGADO AQUÍ QUE SI NO FUNCIONA EL LOGIN XD
+Route::get('noticia/{idnoticia}',[HomeController::class,'show'])->name('noticias.show');
