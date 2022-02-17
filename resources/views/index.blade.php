@@ -28,7 +28,7 @@
                     <h3 class="text-lg text-gray-600 font-semibold mb-2">{{$noticia->categoria_id}}</h3>
                   </div>
                   <p class="text-sm tracking-normal">{{$noticia->descripcion}}</p>
-                  <button class="mt-12 w-full text-center bg-yellow-400 py-2 rounded-lg"><a href={{route('noticias.show', $noticia->id)}}>Leer más</a></button>
+                  <a href={{route('noticias.show', $noticia->id)}}><button class="mt-12 w-full text-center bg-yellow-400 py-2 rounded-lg">Leer más</button></a>
                 </div>
               </div>
             </div>
