@@ -11,7 +11,7 @@
                 <h3>{{$noticia->titulo}}</h3>
                 <p>Categoria: {{$noticia->categoria_id}}</p>
                 <p>{{$noticia->descripcion}}</p>
-                <a href="#">LEER MÁS</a>
+                <a href={{route('noticias.show', $noticia->id)}}>LEER MÁS</a>
             </div>
             <hr>
         @endforeach

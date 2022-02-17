@@ -23,6 +23,9 @@ use Illuminate\Auth\Events\Login;
 // Pagina con todas la noticas sin importar la categoría
 Route::get('/', [HomeController::class,'index'])->name('paginaPrincipal');
 
+// Pagina con la noticia
+Route::get('{idnoticia}',[HomeController::class,'show'])->name('noticias.show');
+
 //Muestra todas la noticias de cierta categoria
 Route::get('noticias/{idcategoria}', [HomeController::class,'categoria'])->name('noticias.categoria');
 
