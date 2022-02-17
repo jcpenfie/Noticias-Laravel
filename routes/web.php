@@ -38,7 +38,7 @@ Route::get('login', [LoginController::class,'index'])->name('login');
 
 //Panel de control: Lista de todas las noticias de ese usuario y puede filtrar por categoria
 //(si es admin aparecen todas las noticias y un nuevo filtro por autor)
-Route::get('login/{idusuario?}', [LoginController::class,'panel'])->name('login.idusuario');
+Route::post('login/{idusuario?}', [LoginController::class,'panel'])->name('login.usuario');
 
 
 //>>>>>>>>>>>>>>>>>>--------------------Operaciones de las noticias-----------------------------

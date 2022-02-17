@@ -13,12 +13,11 @@ class LoginController extends Controller
         return view('login.login');
     }
 
-    public function panel($usuario)
+    public function panel(Request $datos)
     {
-        $usuario = Usuario::find($usuario);
-        $usuarioConsulta = Usuario::where('id', '=', $usuario->id)->first();
-        $noticias = noticia::where('autor_id', '=', $usuario->id)->orderby('updated_at')->Paginate(5); //paginado de 5 en 5
-        return view('login.panel', compact('usuarioConsulta'), compact('noticias'));
+        $usuario = Usuario::where('nombre', '=', $datos->usuario)->first();
+        $noticias = Noticia::where('autor_id', '=', $usuario->id)->orderby('updated_at')->Paginate(5); //paginado de 5 en 5
+        return view('login.panel', compact('usuario'), compact('noticias'));
     }
 
     public function create()
