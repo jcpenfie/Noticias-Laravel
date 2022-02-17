@@ -1,9 +1,9 @@
 @extends('layouts.plantillalogin')
 
-@section('title', 'Panel de {{$usuario[0]->nombre}}')
+@section('title', 'Panel de ' . $usuarioConsulta->nombre)
 
 @section('content')
-    <h1>Bienvenido {{$usuario[0]->nombre}}</h1>
+    <h1>Bienvenido {{$usuarioConsulta->nombre}}</h1>
     <div class="contenedor">
         @foreach ($noticias as $noticia)
             <div class="noticia">

@@ -30,7 +30,7 @@ Route::get('noticias/{idcategoria}', [HomeController::class,'categoria'])->name(
 //--------------------Login al panel de control-----------------------------
 
 //Login que pide usuario y contraseña
-// Route::get('login', [HomeController::class,'login'])->name('login');
+Route::get('login', [LoginController::class,'index'])->name('login');
 
 
 //--------------------Panel de control (usuarios)-----------------------------
@@ -38,7 +38,6 @@ Route::get('noticias/{idcategoria}', [HomeController::class,'categoria'])->name(
 
 //Panel de control: Lista de todas las noticias de ese usuario y puede filtrar por categoria
 //(si es admin aparecen todas las noticias y un nuevo filtro por autor)
-Route::get('login', [LoginController::class,'index'])->name('login');
 Route::get('login/{idusuario?}', [LoginController::class,'panel'])->name('login.idusuario');
 
 
@@ -54,7 +53,7 @@ Route::delete('login/destroy/{idnoticia}', [LoginController::class,'destroy'])->
 Route::put('login/update/{idnoticia}', [LoginController::class,'update'])->name('login.update');
 
 //Lista cierta noticia de cierto autor(usuario)
-Route::put('login/{idusuario}/{idnoticia}', [LoginController::class,'showNot'])->name('login.show.noticia');
+Route::get('login/{idusuario}/{idnoticia}', [LoginController::class,'showNot'])->name('login.show.noticia');
 
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------------------Boton: Nueva Noticia-----------------------------
