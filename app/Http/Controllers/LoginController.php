@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\noticia;
-use App\Models\usuario;
+use App\Models\Noticia;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -13,11 +13,12 @@ class LoginController extends Controller
         return view('login.login');
     }
 
-    public function panel($idusuario)
+    public function panel($usuario)
     {
-        $usuario = usuario::where('id', '=', $idusuario)->get();
-        $noticias = noticia::where('autor_id', '=', $idusuario)->orderby('updated_at')->Paginate(5); //paginado de 5 en 5
-        return view('login.panel', compact('usuario'), compact('noticias'));
+        $usuario = Usuario::find($usuario);
+        $usuarioConsulta = Usuario::where('id', '=', $usuario->id)->first();
+        $noticias = noticia::where('autor_id', '=', $usuario->id)->orderby('updated_at')->Paginate(5); //paginado de 5 en 5
+        return view('login.panel', compact('usuarioConsulta'), compact('noticias'));
     }
 
     public function create()
@@ -29,12 +30,17 @@ class LoginController extends Controller
     {
     }
 
-    public function destroy($idnoticia)
+    public function destroy(noticia $noticia)
     {
-        return view('login.destroy', compact('idnoticia'));
+        return view('login.destroy', compact('noticia'));
     }
     public function update($idnoticia)
     {
-        return view('login.update', compact('idnoticia'));
+        return view('login.update', compact('noticia'));
+    }
+
+    public function showNot()
+    {
+        # code...
     }
 }
