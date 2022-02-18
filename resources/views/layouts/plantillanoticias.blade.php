@@ -13,6 +13,7 @@
 </head>
 <body>
     <!-- header -->
+    @yield('header')
     <!-- nav -->
 
     @yield('content')
@@ -20,6 +21,6 @@
     <!-- footer -->
 
     <!-- script -->
-
+    <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
 </body>
 </html>
