@@ -48,27 +48,27 @@ Route::get('panel', [LoginController::class,'panel'])->name('login.usuario');
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------------------Botones: borrar y editar y ver-----------------------------
 
 //En el panel de control hay un botón borrar que llama a este método con la id que hay que borrar
-Route::delete('login/destroy/{idnoticia}', [LoginController::class,'destroy'])->name('login.destroy');
+Route::delete('panel/destroy/{idnoticia}', [LoginController::class,'destroy'])->name('login.destroy');
 
 //Te manda a un formulario con los datos ya introducidos en él para modificar exactamente lo que quieres
-Route::put('login/update/{idnoticia}', [LoginController::class,'update'])->name('login.update');
+Route::put('panel/update/{idnoticia}', [LoginController::class,'update'])->name('login.update');
 
 //Lista cierta noticia de cierto autor(usuario)
-Route::get('login/{idusuario}/{idnoticia}', [LoginController::class,'showNot'])->name('login.show.noticia');
+Route::get('panel/{idnoticia}', [LoginController::class,'showNot'])->name('login.show.noticia');
 
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------------------Boton: Nueva Noticia-----------------------------
 
 //Formulario para crear una noticia
-Route::get('login/create', [LoginController::class,'create'])->name('login.create');
+Route::get('panel/create', [LoginController::class,'create'])->name('login.create');
 
 //Recoge los datos del formulario del create y crea la noticia
-Route::post('login/store/{$noticia}', [LoginController::class,'store'])->name('login.store');
+Route::post('panel/store', [LoginController::class,'store'])->name('login.store');
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------------------Filtros: Categoria y Autor-----------------------------
 
 //Lista las noticias de cierto usuario de cierta categoría
-Route::post('login/{$idusuario}/{$idcategoria}', [LoginController::class,'showCat'])->name('login.show.categoria');
+Route::post('panel/{$idusuario}/{$idcategoria}', [LoginController::class,'showCat'])->name('login.show.categoria');
 
 
 
