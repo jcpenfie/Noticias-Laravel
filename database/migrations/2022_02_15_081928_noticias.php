@@ -29,7 +29,7 @@ return new class extends Migration
         Schema::create('noticias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo');
-            $table->string('descripcion');
+            $table->longText('descripcion');
             $table->string('imagen');
             $table->unsignedInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias');

@@ -1,10 +1,16 @@
-@extends('layouts.plantillanoticias')
+@extends('layouts.plantillapanel')
 
-@section('title', 'Noticia')
+@section('title', 'Detalle Noticia')
+
+@section('botones')
+<a href="{{route('login.create')}}" class="px-4 py-1 text-lg text-white bg-green-400 rounded font-bold">Crear nueva noticia</a>
+<a href="{{route('login.update', $noticia->categoria_id)}}" class="px-4 py-1 text-lg text-white bg-red-400 rounded font-bold">Editar</a>
+<a href="{{route('login.usuario')}}" class="px-4 py-1 text-lg text-white bg-yellow-400 rounded font-bold">Volver</a>
+@endsection
 
 @section('content')
-    <div class="relative m-5">
-        <div class="w-full bg-yellow-100 p-3 rounded md:w-2/5 mx-auto">
+        <div class="relative">
+        <div class="w-full md:w-2/5 mx-auto">
             <div class="mx-5 my-3 text-sm">
                 <a href=""
                     class=" text-red-600 font-bold tracking-widest">{{ $categorias[$noticia->categoria_id - 1]->nombre }}</a>
@@ -21,8 +27,6 @@
                 Por <strong class="text-gray-700">{{ $autores[$noticia->autor_id - 1]->nombre }}</strong><br>
                 {{ $noticia->created_at }}<br>
                 Actualizado: {{ $noticia->updated_at }}
-            </div>
-
             <div class="py-2 font-semibold mx-auto">
                 <p class="my-5">{!! nl2br(e($noticia->descripcion)) !!}</p> {{-- Para que respete los saltos de líneas --}}
             </div>

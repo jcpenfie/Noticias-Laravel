@@ -40,8 +40,9 @@ class LoginController extends Controller
     public function create()
     {
         session_start();
+        $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
         $categorias = Categoria::all();
-        return view('login.create', compact('categorias'));
+        return view('login.create', compact('categorias', 'usuario'));
     }
 
     public function store(Request $request)
@@ -55,7 +56,7 @@ class LoginController extends Controller
             $fileName = time() . '-' . $file->getClientOriginalName();
 
             $subidaImagen = $request->file('imagen')->move($destino, $fileName); //Sube la imagen al servidor a la ruta especificada
-            $noticia->imagen = $destino . $fileName; //sube la imagen a la base de datos
+            $noticia->imagen = "../".$destino . $fileName; //sube la imagen a la base de datos
         }
 
 
@@ -74,14 +75,17 @@ class LoginController extends Controller
     }
     public function update($idnoticia)
     {
-        return view('login.update', compact('noticia'));
+        $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
+        return view('login.update', compact('noticia','usuario'));
     }
 
-    public function showNot($idnoticia)
+    public function show($idnoticia)
     {
         session_start();
+        $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
         $noticia = Noticia::find($idnoticia);
         $categorias = Categoria::all();
-        return view('login.showNoticia', compact('noticia', 'categorias'));
+        $autores = Usuario::all();
+        return view('login.show', compact('noticia', 'categorias','autores','usuario'));
     }
 }

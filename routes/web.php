@@ -45,6 +45,14 @@ Route::get('panel', [LoginController::class,'panel'])->name('login.usuario');
 //>>>>>>>>>>>>>>>>>>--------------------Operaciones de las noticias-----------------------------
 
 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------------------Boton: Nueva Noticia-----------------------------
+
+//Formulario para crear una noticia
+Route::get('panel/create', [LoginController::class,'create'])->name('login.create');
+
+//Recoge los datos del formulario del create y crea la noticia
+Route::post('panel/store', [LoginController::class,'store'])->name('login.store');
+
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------------------Botones: borrar y editar y ver-----------------------------
 
 //En el panel de control hay un botón borrar que llama a este método con la id que hay que borrar
@@ -54,16 +62,7 @@ Route::delete('panel/destroy/{idnoticia}', [LoginController::class,'destroy'])->
 Route::put('panel/update/{idnoticia}', [LoginController::class,'update'])->name('login.update');
 
 //Lista cierta noticia de cierto autor(usuario)
-Route::get('panel/{idnoticia}', [LoginController::class,'showNot'])->name('login.show.noticia');
-
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------------------Boton: Nueva Noticia-----------------------------
-
-//Formulario para crear una noticia
-Route::get('panel/create', [LoginController::class,'create'])->name('login.create');
-
-//Recoge los datos del formulario del create y crea la noticia
-Route::post('panel/store', [LoginController::class,'store'])->name('login.store');
+Route::get('panel/{idnoticia}', [LoginController::class,'show'])->name('login.show.noticia');
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------------------Filtros: Categoria y Autor-----------------------------
 

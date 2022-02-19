@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Noticia;
 use App\Models\Categoria;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,7 +19,8 @@ class HomeController extends Controller
     public function show($id){
         $noticia = Noticia::find($id);
         $categorias = Categoria::all();
-        return view('show', compact('noticia', 'categorias'));
+        $autores = Usuario::all();
+        return view('show', compact('noticia', 'categorias','autores'));
     }
     
     public function categoria($idcategoria)
