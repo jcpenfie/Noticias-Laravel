@@ -34,17 +34,22 @@
                     <div class="md:flex items-center mt-8">
                         <div class="w-full flex flex-col">
                             <label class="font-semibold leading-none" for="imagen">Imagen: </label>
-                            <input type="file" name="imagen" id="imagen" value="{{$noticia->imagen}}"
+                            <input type="file" name="imagen" id="imagen"
                                 class="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" />
                         </div>
                     </div>
                     <div class="md:flex items-center mt-8">
                         <div class="w-full flex flex-col">
                             <label class="font-semibold leading-none" for="categoria    ">Categoría: </label>
-                            <select class="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" name="categoria_id" id="categoria_id" required value="{{$noticia->categoria}}">
+                            <select class="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" name="categoria_id" id="categoria_id" required>
                                 <option value="0">Seleccionar</option>
                                 @foreach ($categorias as $categoria)
+                                    @if ($categoria->id == $noticia->categoria_id)
+                                        <option value="{{ $categoria->id }}" selected="selected">{{ $categoria->nombre }}</option> 
+                                    @else
                                     <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                    @endif
+
                                 @endforeach
                             </select>
                         </div>

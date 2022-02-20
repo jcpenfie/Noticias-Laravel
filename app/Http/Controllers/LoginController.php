@@ -56,7 +56,7 @@ class LoginController extends Controller
             $fileName = time() . '-' . $file->getClientOriginalName();
 
             $subidaImagen = $request->file('imagen')->move($destino, $fileName); //Sube la imagen al servidor a la ruta especificada
-            $noticia->imagen = "../".$destino . $fileName; //sube la imagen a la base de datos
+            $noticia->imagen = $fileName; //sube la imagen a la base de datos
         }
 
 
@@ -107,7 +107,7 @@ class LoginController extends Controller
             $fileName = time() . '-' . $file->getClientOriginalName();
 
             $subidaImagen = $request->file('imagen')->move($destino, $fileName); //Sube la imagen al servidor a la ruta especificada
-            $noticia->imagen = "../".$destino . $fileName; //sube la imagen a la base de datos
+            $noticia->imagen = $fileName; //sube la imagen a la base de datos
         } 
 
         $noticia->titulo = $request->titulo;

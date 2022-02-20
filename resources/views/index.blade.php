@@ -13,7 +13,7 @@
                         <div>
                             <div class="shadow-lg hover:shadow-xl transform transition duration-500 hover:scale-105">
                                 <div>
-                                    <img class="w-full" src="{{ $noticia->imagen }}" />
+                                    <img class="w-full" src="{{ asset("img/".$noticia->imagen) }}" />
                                     <div class="px-4 py-2">
                                         <h1 class="text-xl font-gray-700 font-bold">{{ $noticia->titulo }}
                                         </h1>
