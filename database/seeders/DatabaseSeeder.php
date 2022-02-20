@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        usuario::factory(5)->create();
-        noticia::factory(30)->create();
+        // usuario::factory(5)->create();
+        // noticia::factory(30)->create();
     }
 }
 // php artisan migrate --seed

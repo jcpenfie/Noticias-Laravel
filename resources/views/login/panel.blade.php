@@ -40,7 +40,7 @@
                                         {{ $noticia->titulo }}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ $usuario->nombre }}
+                                        {{ $usuarios[$noticia->autor_id-1]->nombre }}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         {{ $categorias[$noticia->categoria_id - 1]->nombre }}

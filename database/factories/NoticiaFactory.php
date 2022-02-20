@@ -20,7 +20,7 @@ class NoticiaFactory extends Factory
         return [
             'titulo' => $this->faker->sentence(3),
             'descripcion' => $this->faker->paragraph(),
-            'imagen' => $this->faker->imageUrl(360, 360, 'animals', true, 'dogs', true),
+            'imagen' => $this->faker->image('public/img', 360, 360, 'animals', false, true, 'cats', true),
             'categoria_id' => $this->faker->numberBetween(1, 5),
             'autor_id' => $this->faker->numberBetween(1, 5),
         ];
