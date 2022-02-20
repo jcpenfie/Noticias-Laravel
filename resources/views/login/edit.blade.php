@@ -40,11 +40,11 @@
                     </div>
                     <div class="md:flex items-center mt-8">
                         <div class="w-full flex flex-col">
-                            <label class="font-semibold leading-none" for="categoria    ">Categoría: </label>
+                            <label class="font-semibold leading-none" for="categoria">Categoría: </label>
                             <select class="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" name="categoria_id" id="categoria_id" required value="{{$noticia->categoria}}">
                                 <option value="0">Seleccionar</option>
                                 @foreach ($categorias as $categoria)
-                                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                    <option value="{{ $categoria->id }}" >{{ $categoria->nombre }}</option>
                                 @endforeach
                             </select>
                         </div>
