@@ -4,7 +4,7 @@
 
 @section('botones')
 <a href="{{route('login.create')}}" class="px-4 py-1 text-lg text-white bg-green-400 rounded font-bold">Crear nueva noticia</a>
-<a href="{{route('login.update', $noticia->categoria_id)}}" class="px-4 py-1 text-lg text-white bg-red-400 rounded font-bold">Editar</a>
+<a href="{{route('login.edit', $noticia)}}" class="px-4 py-1 text-lg text-white bg-red-400 rounded font-bold">Editar</a>
 <a href="{{route('login.usuario')}}" class="px-4 py-1 text-lg text-white bg-yellow-400 rounded font-bold">Volver</a>
 @endsection
 

@@ -59,7 +59,8 @@ Route::post('panel/store', [LoginController::class,'store'])->name('login.store'
 Route::delete('panel/destroy/{idnoticia}', [LoginController::class,'destroy'])->name('login.destroy');
 
 //Te manda a un formulario con los datos ya introducidos en él para modificar exactamente lo que quieres
-Route::put('panel/update/{idnoticia}', [LoginController::class,'update'])->name('login.update');
+Route::get('panel/edit/{noticia}', [LoginController::class,'edit'])->name('login.edit');
+Route::put('panel/update/{noticia}', [LoginController::class,'update'])->name('login.update');
 
 //Lista cierta noticia de cierto autor(usuario)
 Route::get('panel/{idnoticia}', [LoginController::class,'show'])->name('login.show.noticia');

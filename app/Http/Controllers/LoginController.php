@@ -73,11 +73,12 @@ class LoginController extends Controller
     {
         return view('login.destroy', compact('noticia'));
     }
-    public function update($idnoticia)
-    {
-        $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
-        return view('login.update', compact('noticia','usuario'));
-    }
+
+    // public function update($idnoticia)
+    // {
+    //     $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
+    //     return view('login.update', compact('noticia','usuario'));
+    // }
 
     public function show($idnoticia)
     {
@@ -87,5 +88,35 @@ class LoginController extends Controller
         $categorias = Categoria::all();
         $autores = Usuario::all();
         return view('login.show', compact('noticia', 'categorias','autores','usuario'));
+    }
+
+    public function edit(Noticia $noticia){
+        session_start();
+        $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
+        $categorias = Categoria::all();
+        $autores = Usuario::all();
+        return view('login.edit', compact('noticia','categorias','autores','usuario'));
+    }
+
+    public function update(Request $request, Noticia $noticia){
+        session_start();
+
+        if ($request->hasFile('imagen')) {
+            $file = $request->file('imagen');
+            $destino = "img/";
+            $fileName = time() . '-' . $file->getClientOriginalName();
+
+            $subidaImagen = $request->file('imagen')->move($destino, $fileName); //Sube la imagen al servidor a la ruta especificada
+            $noticia->imagen = "../".$destino . $fileName; //sube la imagen a la base de datos
+        } 
+
+        $noticia->titulo = $request->titulo;
+        $noticia->descripcion = $request->descripcion;
+        // $noticia->imagen = $request->imagen;
+        $noticia->categoria_id = $request->categoria_id;
+
+        $noticia->save();
+        return redirect()->route('login.usuario');
+
     }
 }
