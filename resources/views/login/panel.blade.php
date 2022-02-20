@@ -34,7 +34,7 @@
                             <tbody>
                                 <tr class="bg-white border-b">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        <img class="h-20 w-20 rounded" src="{{ $noticia->imagen }}" alt="">
+                                        <img class="h-20 w-20 rounded" src="{{ asset("img/".$noticia->imagen) }}" alt="">
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         {{ $noticia->titulo }}
