@@ -21,30 +21,35 @@ class LoginController extends Controller
     public function panel(Request $datos)
     {
         session_start();
+        $usuario = Usuario::where('nombre', '=', $datos->usuario)->first();
 
-        if (isset($_SESSION['usuario']) and isset($_SESSION['id'])) {
-            $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
-            if($usuario->rol == "administrador"){
-                $noticias = Noticia::orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
-            }else{
-                $noticias = Noticia::where('autor_id', '=', $_SESSION['id'])->orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
-            }
-            $categorias = Categoria::all();
-            $usuarios = Usuario::all();
+        if ($usuario == null) {
+            return redirect()->route('login');
         } else {
-            $usuario = Usuario::where('nombre', '=', $datos->usuario)->first();
-            if($usuario->rol == "administrador"){
-                $noticias = Noticia::orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
-            }else{
-                $noticias = Noticia::where('autor_id', '=', $usuario->id)->orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
-            }
-            $categorias = Categoria::all();
-            $usuarios = Usuario::all();
+            if (isset($_SESSION['usuario']) and isset($_SESSION['id'])) {
+                $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
+                if ($usuario->rol == "administrador") {
+                    $noticias = Noticia::orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
+                } else {
+                    $noticias = Noticia::where('autor_id', '=', $_SESSION['id'])->orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
+                }
+                $categorias = Categoria::all();
+                $usuarios = Usuario::all();
+            } else {
+                $usuario = Usuario::where('nombre', '=', $datos->usuario)->first();
+                if ($usuario->rol == "administrador") {
+                    $noticias = Noticia::orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
+                } else {
+                    $noticias = Noticia::where('autor_id', '=', $usuario->id)->orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
+                }
+                $categorias = Categoria::all();
+                $usuarios = Usuario::all();
 
-            $_SESSION['usuario'] = $datos->usuario;
-            $_SESSION['id'] = $usuario->id;
+                $_SESSION['usuario'] = $datos->usuario;
+                $_SESSION['id'] = $usuario->id;
+            }
+            return view('login.panel', compact('usuario', 'categorias', 'noticias', 'usuarios'));
         }
-        return view('login.panel', compact('usuario', 'categorias', 'noticias','usuarios'));
     }
 
     public function create()
@@ -73,9 +78,9 @@ class LoginController extends Controller
         $noticia->titulo = $request->titulo;
         $noticia->descripcion = $request->descripcion;
         $noticia->categoria_id = $request->categoria;
-        if($request->autor_id != $_SESSION['id']){
+        if ($request->autor_id != $_SESSION['id']) {
             $noticia->autor_id = $request->autor_id;
-        }else{
+        } else {
             $noticia->autor_id = $_SESSION['id'];
         }
 
@@ -97,18 +102,20 @@ class LoginController extends Controller
         $noticia = Noticia::find($idnoticia);
         $categorias = Categoria::all();
         $autores = Usuario::all();
-        return view('login.show', compact('noticia', 'categorias','autores','usuario'));
+        return view('login.show', compact('noticia', 'categorias', 'autores', 'usuario'));
     }
 
-    public function edit(Noticia $noticia){
+    public function edit(Noticia $noticia)
+    {
         session_start();
         $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
         $categorias = Categoria::all();
         $autores = Usuario::all();
-        return view('login.edit', compact('noticia','categorias','autores','usuario'));
+        return view('login.edit', compact('noticia', 'categorias', 'autores', 'usuario'));
     }
 
-    public function update(Request $request, Noticia $noticia){
+    public function update(Request $request, Noticia $noticia)
+    {
         session_start();
 
         if ($request->hasFile('imagen')) {
@@ -118,20 +125,19 @@ class LoginController extends Controller
 
             $subidaImagen = $request->file('imagen')->move($destino, $fileName); //Sube la imagen al servidor a la ruta especificada
             $noticia->imagen = $fileName; //sube la imagen a la base de datos
-        } 
+        }
 
         $noticia->titulo = $request->titulo;
         $noticia->descripcion = $request->descripcion;
         $noticia->categoria_id = $request->categoria_id;
 
-        if($request->autor_id != $_SESSION['id']){
+        if ($request->autor_id != $_SESSION['id']) {
             $noticia->autor_id = $request->autor_id;
-        }else{
+        } else {
             $noticia->autor_id = $_SESSION['id'];
         }
 
         $noticia->save();
         return redirect()->route('login.usuario');
-
     }
 }
