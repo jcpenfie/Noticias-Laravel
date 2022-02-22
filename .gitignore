@@ -13,4 +13,8 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+<<<<<<< HEAD
 public/img
+=======
+/public/img
+>>>>>>> ae145acf2939fa60e9b9accc10a8328913185def

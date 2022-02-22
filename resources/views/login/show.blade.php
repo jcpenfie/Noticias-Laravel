@@ -17,7 +17,7 @@
                 <form action="{{ route('login.destroy', $noticia->id) }}" method="POST">
                     @csrf
                     @method('delete')
-                    <input type="submit" value="Borrar" class="px-4 py-1 text-lg text-white bg-red-400 rounded font-bold">
+                    <input type="submit" value="Borrar" class="px-4 py-1 text-lg text-white bg-red-400 rounded font-bold cursor-pointer">
                 </form>
             @endif
             <div class="mx-5 my-3 text-sm">
