@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
     <div class="container flex justify-center mx-auto">
         <div class="flex flex-col">
             <div class="w-full">

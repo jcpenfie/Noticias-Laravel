@@ -22,10 +22,7 @@ class LoginController extends Controller
     {
         session_start();
         $usuario = Usuario::where('nombre', '=', $datos->usuario)->first();
-
-        if ($usuario == null) {
-            return redirect()->route('login');
-        } else {
+     
             if (isset($_SESSION['usuario']) and isset($_SESSION['id'])) {
                 $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
                 if ($usuario->rol == "administrador") {
@@ -37,7 +34,9 @@ class LoginController extends Controller
                 $usuarios = Usuario::all();
             } else {
                 $usuario = Usuario::where('nombre', '=', $datos->usuario)->first();
-                if ($usuario->rol == "administrador") {
+                if(!isset($usuario->rol)){
+                    return redirect()->route('login');
+                }else if ($usuario->rol == "administrador") {
                     $noticias = Noticia::orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
                 } else {
                     $noticias = Noticia::where('autor_id', '=', $usuario->id)->orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
@@ -49,7 +48,6 @@ class LoginController extends Controller
                 $_SESSION['id'] = $usuario->id;
             }
             return view('login.panel', compact('usuario', 'categorias', 'noticias', 'usuarios'));
-        }
     }
 
     public function create()
@@ -90,6 +88,7 @@ class LoginController extends Controller
 
     public function destroy($idnoticia)
     {
+        session_start();
         $noticia = Noticia::find($idnoticia);
         $noticia->delete();
         return redirect()->route('login.usuario');
