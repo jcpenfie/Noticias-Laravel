@@ -13,19 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre');
-        });
-
-        Schema::create('usuarios', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre');
-            $table->string('password');
-            $table->string('rol');
-            $table->timestamps();
-        });
-
         Schema::create('noticias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo');
@@ -36,9 +23,7 @@ return new class extends Migration
             $table->unsignedInteger('autor_id');
             $table->foreign('autor_id')->references('id')->on('usuarios');
             $table->timestamps();
-            
         });
-
     }
 
     /**
@@ -49,7 +34,5 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('noticias');
-        Schema::dropIfExists('usuarios');
-        Schema::dropIfExists('categorias');
     }
 };
