@@ -19,7 +19,7 @@
                                         </h1>
                                         <div class="flex space-x-2 mt-2">
                                             <h3 class="text-lg text-gray-600 font-semibold mb-2">
-                                                {{ $categorias[$noticia->categoria_id - 1]->nombre }}</h3>
+                                                {{ $noticia->nombre }}</h3>
                                         </div>
                                         <p class="text-sm tracking-normal">{{ substr($noticia->descripcion, 0, 200) . "..."; }}</p>
                                         <a href={{ route('noticias.show', $noticia->id) }}><button

@@ -7,7 +7,7 @@
         <div class="w-full bg-yellow-100 p-3 rounded md:w-2/5 mx-auto">
             <div class="mx-5 my-3 text-sm">
                 <a href=""
-                    class=" text-red-600 font-bold tracking-widest">{{ $categorias[$noticia->categoria_id - 1]->nombre }}</a>
+                    class=" text-red-600 font-bold tracking-widest">{{ $noticia->nombre }}</a>
             </div>
             <div class="w-full text-gray-800 text-4xl px-5 my-2 font-bold leading-none">
                 {{ $noticia->titulo }}

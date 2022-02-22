@@ -18,7 +18,7 @@
                         <div class="w-full flex flex-col">
                             <label class="font-semibold leading-none" for="titulo">Título: </label>
                             <input type="text" name="titulo" id="titulo"
-                                class="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" />
+                                class="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" required>
                         </div>
                     </div>
 
@@ -26,7 +26,7 @@
                         <div class="w-full flex flex-col">
                             <label class="font-semibold leading-none" for="descripcion">Descripción: </label>
                             <textarea name="descripcion" id="descripcion" cols="30" rows="10"
-                                class="h-40 text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200"></textarea>
+                                class="h-40 text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" required></textarea>
                         </div>
                     </div>
 
@@ -34,14 +34,14 @@
                         <div class="w-full flex flex-col">
                             <label class="font-semibold leading-none" for="imagen">Imagen: </label>
                             <input type="file" name="imagen" id="imagen"
-                                class="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" />
+                                class="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" required>
                         </div>
                     </div>
                     <div class="md:flex items-center mt-8">
                         <div class="w-full flex flex-col">
-                            <label class="font-semibold leading-none" for="categoria    ">Categoría: </label>
+                            <label class="font-semibold leading-none" for="categoria">Categoría: </label>
                             <select class="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" name="categoria" id="categoria" required>
-                                <option value="0">Seleccionar</option>
+                                <option value="">Seleccionar</option>
                                 @foreach ($categorias as $categoria)
                                     <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                                 @endforeach

@@ -22,7 +22,6 @@ class LoginController extends Controller
     {
         session_start();
         $usuario = Usuario::where('nombre', '=', $datos->usuario)->first();
-     
             if (isset($_SESSION['usuario']) and isset($_SESSION['id'])) {
                 $usuario = Usuario::where('nombre', '=', $_SESSION['usuario'])->first();
                 if ($usuario->rol == "administrador") {
@@ -61,6 +60,8 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         session_start();
+
+        echo $_SESSION['id'];
         $noticia = new Noticia();
 
         if ($request->hasFile('imagen')) {
@@ -76,11 +77,7 @@ class LoginController extends Controller
         $noticia->titulo = $request->titulo;
         $noticia->descripcion = $request->descripcion;
         $noticia->categoria_id = $request->categoria;
-        if ($request->autor_id != $_SESSION['id']) {
-            $noticia->autor_id = $request->autor_id;
-        } else {
-            $noticia->autor_id = $_SESSION['id'];
-        }
+        $noticia->autor_id = $_SESSION['id'];
 
         $noticia->save();
         return redirect()->route('login.usuario');
