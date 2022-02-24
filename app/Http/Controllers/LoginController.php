@@ -22,32 +22,32 @@ class LoginController extends Controller
     {
         session_start();
         $usuario = Usuario::where('nombre', $datos->usuario)->where('password', $datos->password)->first();
-            if (isset($_SESSION['usuario']) and isset($_SESSION['id'])) {
-                if ($usuario->rol == "administrador") {
-                    $noticias = Noticia::orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
-                } else {
-                    $noticias = Noticia::where('autor_id', '=', $_SESSION['id'])->orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
-                }
-                $categorias = Categoria::all();
-                $usuarios = Usuario::all();
+        if (isset($_SESSION['usuario']) and isset($_SESSION['id'])) {
+            $usuario = Usuario::where('nombre', $_SESSION['usuario'])->first();
+            if ($usuario->rol == "administrador") {
+                $noticias = Noticia::orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
             } else {
-                if(!isset($usuario->rol)){
-                    $_SESSION['mensaje'] = 'Correo o contraseña incorrecto';
-                    return redirect()->route('login');
-
-                }else if ($usuario->rol == "administrador") {
-                    $noticias = Noticia::orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
-                } else {
-                    $noticias = Noticia::where('autor_id', '=', $usuario->id)->orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
-                }
-                $categorias = Categoria::all();
-                $usuarios = Usuario::all();
-
-                $_SESSION['usuario'] = $datos->usuario;
-                $_SESSION['id'] = $usuario->id;
-                $_SESSION['mensaje'] = '';
+                $noticias = Noticia::where('autor_id', '=', $_SESSION['id'])->orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
             }
-            return view('login.panel', compact('usuario', 'categorias', 'noticias', 'usuarios'));
+            $categorias = Categoria::all();
+            $usuarios = Usuario::all();
+        } else {
+            if (!isset($usuario->rol)) {
+                $_SESSION['mensaje'] = 'Correo o contraseña incorrecto';
+                return redirect()->route('login');
+            } else if ($usuario->rol == "administrador") {
+                $noticias = Noticia::orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
+            } else {
+                $noticias = Noticia::where('autor_id', '=', $usuario->id)->orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
+            }
+            $categorias = Categoria::all();
+            $usuarios = Usuario::all();
+
+            $_SESSION['usuario'] = $datos->usuario;
+            $_SESSION['id'] = $usuario->id;
+            $_SESSION['mensaje'] = '';
+        }
+        return view('login.panel', compact('usuario', 'categorias', 'noticias', 'usuarios'));
     }
 
     public function create()
