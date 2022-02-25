@@ -13,6 +13,26 @@
             <div class="w-full">
                 <div class="border-b">
                     <table>
+                        @if ($usuario->rol == 'administrador')
+                            <tr>
+                                <div class="flex justify-center" style="align-items: center !important;">
+                                    <p class="font-medium leading-tight text-xl mt-0 mb-2 mr-2 text-gray-800">Categoría: </p>
+                                    <div class="mb-3 xl:w-96">
+                                        <select
+                                            class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                            name="category_id" id="select-cagergory">
+                                            <option value="">Todas</option>
+                                            @foreach ($categorias as $cat)
+                                                <option value="{{ $cat->id }}"
+                                                    @if ($categoryId == $cat->id) selected @endif>
+                                                    {{ $cat->nombre }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </tr>
+                        @endif
                         <thead class="bg-gray-800">
                             <tr>
                                 <th scope="col" class="text-sm font-medium text-white px-6 py-4">
@@ -57,7 +77,7 @@
                         @endforeach
                         <tr class="">
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" colspan="5">
-                                {{ $noticias->links() }}
+                                {{ $noticias->appends(['category_id' => $categoryId])->links() }}
                             </td>
                         </tr>
                     </table>
