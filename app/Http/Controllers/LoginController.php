@@ -47,7 +47,14 @@ class LoginController extends Controller
             $_SESSION['id'] = $usuario->id;
             $_SESSION['mensaje'] = '';
         }
-        return view('login.panel', compact('usuario', 'categorias', 'noticias', 'usuarios'));
+        //Para el filtro de categorias
+        if (isset($_REQUEST['category_id']) && $_REQUEST['category_id'] != null){
+            $categoryId = $_REQUEST['category_id'];
+            $noticias = Noticia::where('categoria_id', $categoryId)->orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
+        }else{
+            $categoryId = 0;
+        }
+        return view('login.panel', compact('usuario', 'categorias', 'noticias', 'usuarios','categoryId'));
     }
 
     public function create()
