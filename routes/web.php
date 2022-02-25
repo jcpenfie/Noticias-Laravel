@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\FormularioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Auth\Events\Login;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +77,7 @@ Route::post('panel/{$idusuario}/{$idcategoria}', [LoginController::class,'showCa
 
 // Pagina con la noticia ESTE CASTIGADO AQUÍ QUE SI NO FUNCIONA EL LOGIN XD
 Route::get('noticia/{idnoticia}',[HomeController::class,'show'])->name('noticias.show');
+
+//MAIL
+Route::get('formulario', [FormularioController::class, 'index'])->name('formulario.index');
+Route::post('formulario', [FormularioController::class, 'store'])->name('formulario.store');
