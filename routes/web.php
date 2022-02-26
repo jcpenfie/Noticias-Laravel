@@ -4,6 +4,7 @@ use App\Http\Controllers\FormularioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Auth\Events\Login;
 
 
@@ -81,3 +82,12 @@ Route::get('noticia/{idnoticia}',[HomeController::class,'show'])->name('noticias
 //MAIL
 Route::get('formulario', [FormularioController::class, 'index'])->name('formulario.index');
 Route::post('formulario', [FormularioController::class, 'store'])->name('formulario.store');
+
+
+//Crección de usuarios
+
+//Formulario para crear un usuario
+Route::get('registro', [UsuariosController::class,'create'])->name('registro.create');
+
+//Recoge los datos del formulario del create y crea el usuario
+Route::post('registro/store', [UsuariosController::class,'store'])->name('registro.store');
