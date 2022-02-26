@@ -59,7 +59,7 @@
         </div>
     </nav>
     <!-- nav -->
-
+    @include('flash-message')
     @yield('content')
 
     <!-- footer -->

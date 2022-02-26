@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-
 <body class="bg-yellow-400">
     <!-- header -->
     <nav class="bg-yellow-300 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800 sticky top-0 z-50">
@@ -62,13 +61,14 @@
         </div>
     </nav>
     <!-- nav -->
-
     @yield('content')
 
     <!-- footer -->
 
     <!-- script -->
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
     <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
+    
 </body>
 
 </html>

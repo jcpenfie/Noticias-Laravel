@@ -23,6 +23,6 @@ class FormularioController extends Controller
 
         Mail::to('admin@periodico.com')->send($correo);
 
-        return redirect()->route('paginaPrincipal')->with('info','Mensaje enviado');
+        return redirect()->route('paginaPrincipal')->with('success','Mensaje enviado');
     }
 }

@@ -17,7 +17,6 @@
     <!-- header -->
     @yield('header')
     <!-- nav -->
-
     @yield('content')
 
     <!-- footer -->
