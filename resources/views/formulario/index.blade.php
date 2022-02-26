@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="w-full">
-    <div class="bg-gradient-to-b from-yellow-700 to-yellow-300 h-96 text-center pt-6">
-        <a href="{{route('paginaPrincipal')}}" class="px-4 py-1 text-lg text-white bg-yellow-500 rounded font-bold hover:bg-yellow-700">Volver</a>
+    <div class="bg-gradient-to-b from-yellow-500 to-yellow-300 h-96 text-center pt-6">
+        
     </div>
     
     <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mb-12">
@@ -40,7 +40,8 @@
                     @enderror
                 </div>
                 <div class="flex items-center justify-center w-full">
-                    <button type="submit" class="mt-9 font-semibold leading-none text-white py-4 px-10 bg-yellow-600 rounded hover:bg-yellow-500 focus:ring-2 focus:ring-offset-2 focus:ring-yellow-700 focus:outline-none">
+                    <a href="{{route('paginaPrincipal')}}" class="mt-9 font-semibold leading-none text-white py-4 px-10 bg-red-500 rounded hover:bg-red-600 focus:ring-2 focus:ring-offset-2 focus:ring-yellow-700 focus:outline-none mr-3">Volver</a>
+                    <button type="submit" class="mt-9 font-semibold leading-none text-white py-4 px-10 bg-yellow-500 rounded hover:bg-yellow-600 focus:ring-2 focus:ring-offset-2 focus:ring-yellow-700 focus:outline-none">
                         Enviar mensaje
                     </button>
                 </div>
