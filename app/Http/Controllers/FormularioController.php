@@ -21,7 +21,7 @@ class FormularioController extends Controller
         ]);
         $correo = new FormularioMailable($request->all());
 
-        Mail::to('rod.amanda@hotmail.com')->send($correo);
+        Mail::to('admin@periodico.com')->send($correo);
 
         return redirect()->route('paginaPrincipal')->with('info','Mensaje enviado');
     }
