@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\usuario;
 use App\Models\noticia;
+use App\Models\Categoria;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +18,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $cat = new Categoria();
+        $cat ->id = 1;
+        $cat ->nombre = "Economía";
+        $cat->save();
+        $cat ->id = 2;
+        $cat ->nombre = "Internacional";
+        $cat->save();
+        $cat ->id = 3;
+        $cat ->nombre = "Sociedad";
+        $cat->save();
+        $cat ->id = 4;
+        $cat ->nombre = "Deportes";
+        $cat->save();
+        $cat ->id = 5;
+        $cat ->nombre = "Cultura";
+        $cat->save();
+
         usuario::factory(5)->create();
         noticia::factory(30)->create();
     }
