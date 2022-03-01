@@ -33,8 +33,7 @@ class LoginController extends Controller
             $usuarios = Usuario::all();
         } else {
             if (!isset($usuario->rol)) {
-                $_SESSION['mensaje'] = 'Correo o contraseña incorrecto';
-                return redirect()->route('login');
+                return redirect()->route('login')->with('error','Correo o contraseña incorrecto.');
             } else if ($usuario->rol == "administrador") {
                 $noticias = Noticia::orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
             } else {
@@ -77,7 +76,7 @@ class LoginController extends Controller
             $destino = "img/";
             $fileName = time() . '-' . $file->getClientOriginalName();
 
-            $subidaImagen = $request->file('imagen')->move($destino, $fileName); //Sube la imagen al servidor a la ruta especificada
+            $request->file('imagen')->move($destino, $fileName); //Sube la imagen al servidor a la ruta especificada
             $noticia->imagen = $fileName; //sube la imagen a la base de datos
         }
 
@@ -127,7 +126,7 @@ class LoginController extends Controller
             $destino = "img/";
             $fileName = time() . '-' . $file->getClientOriginalName();
 
-            $subidaImagen = $request->file('imagen')->move($destino, $fileName); //Sube la imagen al servidor a la ruta especificada
+            $request->file('imagen')->move($destino, $fileName); //Sube la imagen al servidor a la ruta especificada
             $noticia->imagen = $fileName; //sube la imagen a la base de datos
         }
 
