@@ -17,6 +17,19 @@
 
 <body>
     <!-- header -->
+    @if ($message = Session::get('error'))
+    <div class="alert bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full alert-dismissible fade show" role="alert">
+        <strong class="mr-1">¡ERROR! </strong> {{$message}}
+        <button type="button" class="btn-close box-content w-4 h-4 p-1 ml-auto text-yellow-900 border-none rounded-none focus:shadow-none focus:outline-none focus:opacity-100 hover:text-yellow-900 hover:opacity-75 hover:no-underline" data-bs-dismiss="alert" aria-label="Close"><strong class="mr-1">X</strong></button>
+      </div>
+    @endif
+    @yield('header')
+    @if ($message = Session::get('success'))
+    <div class="alert bg-green-100 rounded-lg py-5 px-6 mb-3 text-base text-green-700 inline-flex items-center w-full alert-dismissible fade show" role="alert">
+        <strong class="mr-1">¡GRACIAS! </strong> {{$message}}
+        <button type="button" class="btn-close box-content w-4 h-4 p-1 ml-auto text-yellow-900 border-none rounded-none focus:shadow-none focus:outline-none focus:opacity-100 hover:text-yellow-900 hover:opacity-75 hover:no-underline" data-bs-dismiss="alert" aria-label="Close"><strong class="mr-1">X</strong></button>
+      </div>
+    @endif
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
             <a href="{{ route('login.usuario') }}" class="flex">
@@ -76,6 +89,7 @@
     <!-- script -->
     <script src="{{ asset('js/filtros.js') }}"></script>
     <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 </body>
 
 </html>
