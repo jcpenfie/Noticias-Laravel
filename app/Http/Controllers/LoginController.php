@@ -135,10 +135,10 @@ class LoginController extends Controller
         $noticia->descripcion = $request->descripcion;
         $noticia->categoria_id = $request->categoria_id;
 
-        if ($request->autor_id != $_SESSION['id']) {
-            $noticia->autor_id = $request->autor_id;
-        } else {
+        if(!isset($request->autor_id)){
             $noticia->autor_id = $_SESSION['id'];
+        }else{
+            $noticia->autor_id = $request->autor_id;
         }
 
         $noticia->save();
