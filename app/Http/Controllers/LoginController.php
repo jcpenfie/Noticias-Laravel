@@ -48,7 +48,7 @@ class LoginController extends Controller
             $_SESSION['mensaje'] = '';
         }
         //Para el filtro de categorias
-        if (isset($_REQUEST['category_id']) && $_REQUEST['category_id'] != null){
+        if (isset($_REQUEST['category_id']) && $_REQUEST['category_id'] != 0){
             $categoryId = $_REQUEST['category_id'];
             $noticias = Noticia::where('categoria_id', $categoryId)->orderBy('updated_at', 'desc')->Paginate(5); //paginado de 5 en 5
         }else{
