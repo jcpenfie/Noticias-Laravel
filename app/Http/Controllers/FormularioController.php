@@ -14,11 +14,14 @@ class FormularioController extends Controller
 
     public function store(Request $request){
 
+        #Validaciones del formulario.
+
         $request->validate([
             'name' => 'required',
             'correo' => 'required|email',
             'mensaje' => 'required',
         ]);
+        
         $correo = new FormularioMailable($request->all());
 
         Mail::to('admin@periodico.com')->send($correo);

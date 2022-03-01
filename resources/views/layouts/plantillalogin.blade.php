@@ -15,7 +15,6 @@
 </head>
 <body>
     <!-- header -->
-    @yield('header')
     <!-- nav -->
     @yield('content')
 

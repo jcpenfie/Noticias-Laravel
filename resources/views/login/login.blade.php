@@ -6,10 +6,10 @@
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
         <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg">
             <h3 class="text-2xl font-bold text-center">Inicia sesión con tu cuenta</h3>
-            @if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '')
+            @if ($message = Session::get('error'))
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <strong class="font-bold">Error de validación:</strong>
-                    <span class="block sm:inline">{{ $_SESSION['mensaje'] }}</span>
+                    <span class="block sm:inline">{{ $message }}</span>
                     <span class="absolute top-0 bottom-0 right-0 px-0 py-3">
                     </span>
                 </div>
