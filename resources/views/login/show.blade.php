@@ -29,7 +29,7 @@
             </div>
 
             <div class="mx-5">
-                <img src="{{ asset('/img/' . $noticia->imagen) }}">
+                <img src="{{ asset('img//' . $noticia->imagen) }}">
             </div>
 
             <div class="w-full text-gray-600 font-thin italic px-5 pt-3">
