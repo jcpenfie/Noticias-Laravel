@@ -32,7 +32,7 @@
                                                 {{ $categorias[$noticia->categoria_id - 1]->nombre }}</h3>
                                         </div>
                                         <p class="text-sm tracking-normal">
-                                            {{ substr($noticia->descripcion, 0, 200) . '...' }}</p>
+                                            {{ substr($noticia->descripcion, 0, 50) . '...' }}</p>
                                         <a href={{ route('noticias.show', $noticia->id) }}><button
                                                 class="mt-12 w-full text-center bg-yellow-400 py-2 rounded-lg">Leer
                                                 más</button></a>
